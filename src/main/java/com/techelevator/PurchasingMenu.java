@@ -10,4 +10,6 @@ public class PurchasingMenu extends Menu {
     public PurchasingMenu(InputStream input, OutputStream output) {
         super(input, output);
     }
+
+
 }

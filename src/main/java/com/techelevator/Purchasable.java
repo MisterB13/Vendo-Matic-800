@@ -1,5 +1,5 @@
 package com.techelevator;
 
 public interface Purchasable {
-    public void makeNoise();
+    public String makeNoise();
 }
