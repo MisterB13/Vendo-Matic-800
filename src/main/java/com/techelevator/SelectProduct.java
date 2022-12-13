@@ -1,13 +1,12 @@
 package com.techelevator;
 
-import com.techelevator.view.Menu;
+import com.techelevator.models.Product;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
-public class SelectProduct extends Product implements Purchasable {
+public class SelectProduct  {
 
     List<String> productList = getListOfProducts;
     InputStream input;

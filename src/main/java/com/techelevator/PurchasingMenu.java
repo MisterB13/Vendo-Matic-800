@@ -4,6 +4,7 @@ import com.techelevator.view.Menu;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,19 +22,19 @@ public class PurchasingMenu extends Menu {
         super(input, output);
     }
 
-    public void run() {
-        String choice = (String) menu.getChoiceFromOptions();
-        while (true) {
-
-        }
-    }
+//    public void run() {
+//        String choice = (String) menu.getChoiceFromOptions();
+//        while (true) {
+//
+//        }
+//    }
 
     public List<String> getProductList() {
         return productList;
     }
 
     public void setProductList(List<String> productList) {
-        this.productList = getListOfProducts();
+        //this.productList = getListOfProducts();
     }
 
     public void printProductList() {
