@@ -35,7 +35,7 @@ public class Log extends Product {
             System.err.println("There was an unknown error with the log. You might want to look into that.");
         }
     }
-    public void writer(BigDecimal amount, BigDecimal balance) {
+    public void writer(String typeOfTransaction, BigDecimal amount, BigDecimal balance) {
 
         LocalDate todaysDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
@@ -47,6 +47,25 @@ public class Log extends Product {
             String printBalance = balance.toString();
 
             logWriter.println(printToday + " " + printTime + " " + String.format("%-25s", typeOfTransaction)
+                    + String.format("%-10s", "$" + printAmount) + String.format("%-10s", "$" + printBalance));
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found.");
+        }
+    }
+
+    public void writer(String typeOfTransaction, String choice, BigDecimal amount, BigDecimal balance) {
+
+        LocalDate todaysDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+        try (PrintWriter logWriter = new PrintWriter(new FileOutputStream(new File("./log.txt"), true))) {
+
+            String printToday = todaysDate.toString();
+            String printTime = currentTime.toString().substring(0, currentTime.toString().length() - 4);
+            String printAmount = amount.toString();
+            String printBalance = balance.toString();
+
+            logWriter.println(printToday + " " + printTime + " " + String.format("%-25s", typeOfTransaction) + String.format("%-25s", choice)
                     + String.format("%-10s", "$" + printAmount) + String.format("%-10s", "$" + printBalance));
 
         } catch (FileNotFoundException e) {
