@@ -1,7 +1,10 @@
 package com.techelevator;
 
+import com.techelevator.data.Log;
+import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
 
+import java.io.Console;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
@@ -10,12 +13,13 @@ import java.util.List;
 
 public class PurchasingMenu extends Menu {
 
-    private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";
+  //  private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";
 
     private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product";
 
-    private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
+   // private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
     List<String> productList = new ArrayList<>();
+    Log writer = new Log();
 
     private Menu menu;
     public PurchasingMenu(InputStream input, OutputStream output) {
@@ -42,6 +46,28 @@ public class PurchasingMenu extends Menu {
         System.out.println("Please enter item code from list above: ");
 
     }
+
+    public BigDecimal feedMoney(String choice, BigDecimal runningBalance) {
+        BigDecimal amountToAddBack = new BigDecimal(0);
+        String typeOfTransaction = "FEED MONEY:";
+
+
+        if (choice.equals("Feed 1 dollars")) {
+            amountToAddBack = new BigDecimal(1.00);
+            writer.writer(typeOfTransaction, new BigDecimal(1.00).setScale(2), runningBalance.add(amountToAddBack) );
+        } else if (choice.equals("Feed 2 dollars")) {
+            amountToAddBack = new BigDecimal(2.00);
+            writer.writer(typeOfTransaction, new BigDecimal(2.00).setScale(2), runningBalance.add(amountToAddBack));
+        } else if (choice.equals("Feed 5 dollars")) {
+            amountToAddBack = new BigDecimal(5.00);
+            writer.writer(typeOfTransaction, new BigDecimal(5.00).setScale(2), runningBalance.add(amountToAddBack));
+        } else if (choice.equals("Feed 10 dollars")) {
+            amountToAddBack = new BigDecimal(10.00);
+            writer.writer(typeOfTransaction, new BigDecimal(10.00).setScale(2), runningBalance.add(amountToAddBack));
+        }
+        return amountToAddBack;
+    }
+
 
 
     public void finishTransaction(BigDecimal balance) {
