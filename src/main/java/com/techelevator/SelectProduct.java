@@ -1,29 +1,15 @@
 package com.techelevator;
 
 import com.techelevator.models.Product;
-
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.techelevator.models.TypeConstants;
 import java.util.List;
 
-public class SelectProduct  {
+public class SelectProduct extends Product implements TypeConstants {
 
     List<String> productList = getListOfProducts;
-    InputStream input;
 
-    InputStream output;
-
-    private static final String CHIP_NOISE = "Crunch Crunch, Yum!";
-    private static final String CANDY_NOISE = "Munch Munch, Yum!";
-    private static final String DRINK_NOISE = "Glug Glug, Yum!";
-    private static final String GUM_NOISE = "Chew Chew, Yum!";
-
-    private String type = getType();
-
-    public SelectProduct(InputStream input, OutputStream output) {
-        super(input, output);
-        Product product = new Product();
-        this.productList = productList;
+    public SelectProduct(String name, double price, String type) {
+        super(name, price, type);
     }
 
     public void printProductList() {
@@ -41,17 +27,8 @@ public class SelectProduct  {
         return dispense;
     }
 
-    public String makeNoise(String type) {
-        switch (type) {
-            case "Chip":
-                return CHIP_NOISE;
-            case "Candy":
-                return CANDY_NOISE;
-            case "Drink":
-                return DRINK_NOISE;
-            case "Gum":
-                return GUM_NOISE;
-        }
+    @Override
+    public String makeSound() {
         return null;
     }
 }

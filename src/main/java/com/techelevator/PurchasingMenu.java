@@ -58,7 +58,6 @@ public class PurchasingMenu extends Menu {
 
 
 
-        System.out.println(
-                "Your change is " + quarter + " quarters, " + dime + " dimes and " + nickel + " nickels. ");
+        System.out.println("Your change is " + quarter + " quarters, " + dime + " dimes and " + nickel + " nickels. ");
     }
 }
