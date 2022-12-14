@@ -1,6 +1,10 @@
 package com.techelevator;
 
+import com.techelevator.data.InvalidProductCodeException;
 import com.techelevator.data.Log;
+import com.techelevator.data.Repo;
+import com.techelevator.interfaces.TypeConstants;
+import com.techelevator.models.Chip;
 import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
 
@@ -11,27 +15,31 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PurchasingMenu extends Menu {
+public class PurchasingMenu extends Menu implements TypeConstants {
 
-  //  private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";
+    private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money:";
 
-    private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product";
+    private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product:";
 
-   // private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
+    private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction:";
     List<String> productList = new ArrayList<>();
     Log writer = new Log();
 
-    private Menu menu;
+    String in = System.in.toString();
+
+    Product product = new Product() {
+        @Override
+        public String makeSound() {
+            return null;
+        }
+    };
+
+    Balance balance = new Balance();
+
     public PurchasingMenu(InputStream input, OutputStream output) {
         super(input, output);
     }
 
-//    public void run() {
-//        String choice = (String) menu.getChoiceFromOptions();
-//        while (true) {
-//
-//        }
-//    }
 
     public List<String> getProductList() {
         return productList;
@@ -44,12 +52,12 @@ public class PurchasingMenu extends Menu {
     public void printProductList() {
         System.out.println(productList);
         System.out.println("Please enter item code from list above: ");
-
+        String userIn = in;
     }
 
     public BigDecimal feedMoney(String choice, BigDecimal runningBalance) {
         BigDecimal amountToAddBack = new BigDecimal(0);
-        String typeOfTransaction = "FEED MONEY:";
+        String typeOfTransaction = PURCHASING_MENU_FEED_MONEY;
 
 
         if (choice.equals("Feed 1 dollars")) {
@@ -66,6 +74,36 @@ public class PurchasingMenu extends Menu {
             writer.writer(typeOfTransaction, new BigDecimal(10.00).setScale(2), runningBalance.add(amountToAddBack));
         }
         return amountToAddBack;
+    }
+
+    public void selectProduct() throws InvalidProductCodeException {
+        System.out.println(getProductList());
+        System.out.println("Please enter the item code of the product you wish to purchase: ");
+        String userIn = in;
+        switch (product.getType()) {
+            case (TYPE_CHIP) :
+                System.out.println("Crunch Crunch, Yum!");
+                break;
+            case (TYPE_CANDY) :
+                System.out.println("Munch Munch, Yum!");
+                break;
+            case (TYPE_DRINK) :
+                System.out.println("Glug Glug, Yum!");
+                break;
+            case (TYPE_GUM) :
+                System.out.println("Chew Chew, Yum!");
+                break;
+        }
+        System.out.println("You have selected: " + Repo.getProductFromList(userIn));
+        writer.writer();
+    }
+
+    public BigDecimal changeRemainingBalance() {
+        BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
+        BigDecimal newBalance = balance.subtract(productPrice);
+        return newBalance;
+
+
     }
 
 

@@ -43,11 +43,10 @@ public class Log extends Product {
 
             String printToday = todaysDate.toString();
             String printTime = currentTime.toString().substring(0, currentTime.toString().length() - 4);
-            String printTypeOfTransaction = typeOfTransaction.toString();
             String printAmount = amount.toString();
             String printBalance = balance.toString();
 
-            logWriter.println(printToday + " " + printTime + " " + String.format("%-25s", printTypeOfTransaction)
+            logWriter.println(printToday + " " + printTime + " " + String.format("%-25s", typeOfTransaction)
                     + String.format("%-10s", "$" + printAmount) + String.format("%-10s", "$" + printBalance));
 
         } catch (FileNotFoundException e) {
