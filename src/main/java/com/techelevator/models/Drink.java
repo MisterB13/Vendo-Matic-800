@@ -1,5 +1,7 @@
 package com.techelevator.models;
 
+import com.techelevator.interfaces.TypeConstants;
+
 public class Drink extends Product implements TypeConstants {
 
     public Drink(String name, double price) {

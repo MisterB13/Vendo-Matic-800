@@ -1,14 +1,14 @@
 package com.techelevator.data;
 
+import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.models.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class DataProcess implements TypeConstants {
+public class Repo implements TypeConstants {
 
     private static Map<String, Product> listOfProducts = new TreeMap<>();
     private final static String FILE_PATH = "vendingmachine.csv";
@@ -56,7 +56,7 @@ public class DataProcess implements TypeConstants {
             String key = productCode.toUpperCase().trim();
 
             if (key.length() != 2 || !listOfProducts.containsKey(key))
-                throw new InvalidProductCodeException("Product Code doesn't exist.");
+                throw new InvalidProductCodeException("Product Code does not exist.");
 
             product = listOfProducts.get(key);
         } catch (NullPointerException npe) {
@@ -74,18 +74,22 @@ public class DataProcess implements TypeConstants {
             String key = productCode.toUpperCase().trim();
 
             if (key.length() != 2 || !listOfProducts.containsKey(key))
-                throw new InvalidProductCodeException("Product Code doesn't exist.");
+                throw new InvalidProductCodeException("Product Code does not exist.");
 
             var productToUpdate = listOfProducts.get(key);
 
+            if(productToUpdate == null)
+                throw new Exception("Product was null");
+
+            var quantityToUpdate = productToUpdate.getQuantity();
+
             if (productToUpdate.getQuantity() > 0) {
                 productToUpdate.setQuantity(productToUpdate.getQuantity() - 1);
-                var updatedProduct= listOfProducts.replace(key, productToUpdate);
 
-                message = String.format("%s's quantity was updated to %d.",
-                        updatedProduct.getName(), updatedProduct.getQuantity());
+                message = String.format("%s's quantity updated from %d to %d.",
+                            productToUpdate.getName(), quantityToUpdate, productToUpdate.getQuantity());
             } else
-                message = String.format("%s is currently SOLD OUT.", productToUpdate.getName());
+                message = String.format("%s is SOLD OUT.", productToUpdate.getName());
 
         } catch (NullPointerException npe) {
                 throw new InvalidProductCodeException("Product Code was null.");

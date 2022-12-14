@@ -1,5 +1,7 @@
 package com.techelevator.models;
 
+import com.techelevator.interfaces.TypeConstants;
+
 public class Gum extends Product implements TypeConstants {
 
     public Gum(String name, double price) {

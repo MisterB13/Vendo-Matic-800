@@ -1,4 +1,4 @@
-package com.techelevator.models;
+package com.techelevator.interfaces;
 
 public interface TypeConstants {
      String TYPE_CANDY = "Candy";
