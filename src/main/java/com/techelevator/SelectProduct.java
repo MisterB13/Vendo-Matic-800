@@ -1,13 +1,12 @@
 package com.techelevator;
 
 import com.techelevator.models.Product;
-
-import java.io.InputStream;
-import java.io.OutputStream;
+import com.techelevator.models.TypeConstants;
 import java.util.List;
 
-public class SelectProduct  {
+public class SelectProduct extends Product implements TypeConstants {
 
+<<<<<<< HEAD
     //List<String> productList = getListOfProducts;
     InputStream input;
 
@@ -24,6 +23,12 @@ public class SelectProduct  {
 //        super(input, output);
 //        Product product = new Product();
 //        this.productList = productList;
+=======
+    List<String> productList = getListOfProducts;
+
+    public SelectProduct(String name, double price, String type) {
+        super(name, price, type);
+>>>>>>> f096fb575837a6e067ba881d585006f66acc547b
     }
 
     public void printProductList() {
@@ -41,17 +46,8 @@ public class SelectProduct  {
 //        return dispense;
 //    }
 
-    public String makeNoise(String type) {
-        switch (type) {
-            case "Chip":
-                return CHIP_NOISE;
-            case "Candy":
-                return CANDY_NOISE;
-            case "Drink":
-                return DRINK_NOISE;
-            case "Gum":
-                return GUM_NOISE;
-        }
+    @Override
+    public String makeSound() {
         return null;
     }
 }

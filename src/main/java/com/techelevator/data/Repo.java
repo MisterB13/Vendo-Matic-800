@@ -101,8 +101,7 @@ public class Repo implements TypeConstants {
 
 
     public static void displayListOfProducts() {
-        for (Map.Entry<String, Product> product:
-                listOfProducts.entrySet()) {
+        for (Map.Entry<String, Product> product : listOfProducts.entrySet()) {
             System.out.printf("%S - %-19s  $%.2f  %-6s %s\n",
                     product.getKey(), product.getValue().getName(), product.getValue().getPrice(), product.getValue().getType(),
                     product.getValue().getQuantity() > 0 ? product.getValue().getQuantity() : "SOLD OUT");
