@@ -22,13 +22,6 @@ public class PurchasingMenu extends Menu {
         super(input, output);
     }
 
-//    public void run() {
-//        String choice = (String) menu.getChoiceFromOptions();
-//        while (true) {
-//
-//        }
-//    }
-
     public List<String> getProductList() {
         return productList;
     }

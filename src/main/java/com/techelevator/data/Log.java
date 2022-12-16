@@ -22,7 +22,7 @@ public class Log extends Product {
 
     public void changeLog(String logLine) {
         File log = new File(filePath);
-        try (PrintWriter addLog = new PrintWriter(new FileOutputStream(log, true)){
+        try (PrintWriter addLog = new PrintWriter(new FileOutputStream(log, true))){
 
         } catch (FileNotFoundException fnaf) {
             System.err.println("File doesn't exist, but really, does anything?");

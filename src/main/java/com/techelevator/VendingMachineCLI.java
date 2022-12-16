@@ -1,7 +1,6 @@
 package com.techelevator;
 
 import com.techelevator.data.Repo;
-import com.techelevator.data.InvalidProductCodeException;
 import com.techelevator.view.Menu;
 
 public class VendingMachineCLI {
@@ -22,28 +21,29 @@ public class VendingMachineCLI {
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				Repo.displayListOfProducts();
-				testInput();
+
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				// do purchase
+				PurchaseCLI purchaseCLI = new PurchaseCLI(menu);
+				purchaseCLI.displayPurchasingMenu();
 			}
 		}
 	}
 
-	public static void testInput()  {
-		try {
-			var message = Repo.updateProduct("A1");
-			System.out.println(message);
-
-		} catch (InvalidProductCodeException ipce) {
-			System.out.println(ipce.getMessage());
-		}
-
-	}
+//	public static void testInput()  {
+//		try {
+//			var message = Repo.updateProduct("A1");
+//			System.out.println(message);
+//
+//		} catch (InvalidProductCodeException ipce) {
+//			System.out.println(ipce.getMessage());
+//		}
+//
+//	}
 
 	public static void main(String[] args) {
+		Repo.startup();
 		Menu menu = new Menu(System.in, System.out);
 		VendingMachineCLI cli = new VendingMachineCLI(menu);
-		Repo.startup();
 
 		cli.run();
 	}

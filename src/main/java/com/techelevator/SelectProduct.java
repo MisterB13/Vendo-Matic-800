@@ -1,53 +1,49 @@
 package com.techelevator;
 
+import com.techelevator.data.Repo;
 import com.techelevator.models.Product;
-import com.techelevator.models.TypeConstants;
-import java.util.List;
+import com.techelevator.view.Menu;
+import java.util.Scanner;
 
-public class SelectProduct extends Product implements TypeConstants {
+public class SelectProduct {
+    private final Menu menu;
+    private static final String ENTER_PRODUCT_CODE_TO_PURCHASE = "Enter product code to purchase";
+    private static final String FEED_MONEY_PREVIOUS_MENU = "Return to previous menu";
+    private static final String[] SELECT_PRODUCT_MENU_OPTIONS = { ENTER_PRODUCT_CODE_TO_PURCHASE, FEED_MONEY_PREVIOUS_MENU };
 
-<<<<<<< HEAD
-    //List<String> productList = getListOfProducts;
-    InputStream input;
-
-    InputStream output;
-
-    private static final String CHIP_NOISE = "Crunch Crunch, Yum!";
-    private static final String CANDY_NOISE = "Munch Munch, Yum!";
-    private static final String DRINK_NOISE = "Glug Glug, Yum!";
-    private static final String GUM_NOISE = "Chew Chew, Yum!";
-
-    //private String type = getType();
-
-    public SelectProduct(InputStream input, OutputStream output) {
-//        super(input, output);
-//        Product product = new Product();
-//        this.productList = productList;
-=======
-    List<String> productList = getListOfProducts;
-
-    public SelectProduct(String name, double price, String type) {
-        super(name, price, type);
->>>>>>> f096fb575837a6e067ba881d585006f66acc547b
+    public SelectProduct(Menu menu) {
+        this.menu = menu;
     }
 
-    public void printProductList() {
-        //System.out.println(productList);
-        System.out.println("Please enter item code from list above: ");
+    public void displaySelectProductMenu() {
+        while(true) {
+            Repo.displayListOfProducts();
+            var choice = (String) menu.getChoiceFromOptions(SELECT_PRODUCT_MENU_OPTIONS);
 
+            if(choice.equals(ENTER_PRODUCT_CODE_TO_PURCHASE)) {
+                makeProductSelection();
+            } else if (choice.equals(FEED_MONEY_PREVIOUS_MENU)) { break; }
+        }
     }
 
-    public void selectProduct(Object choice) {
-    }
+    public void makeProductSelection() {
 
-//    public String dispenseProduct() {
-//        String dispense = getProduct() + ": " + getPrice() + getRemainingBalance();
-//        System.out.println(makeNoise(type));
-//        return dispense;
-//    }
+        while(true) {
+            System.out.print("Enter a code to select an item >>> ");
+            var scanner = new Scanner(System.in);
+            String productCode = scanner.nextLine().trim();
 
-    @Override
-    public String makeSound() {
-        return null;
+            Product product = Repo.getProductFromList(productCode);
+
+            if(product != null) {
+
+                if(product.getQuantity() > 0) {
+                    //get and update balance needed.
+                    String message = Repo.updateProduct(productCode);
+                    System.out.println(message);
+                    break;
+                }
+            }
+        }
     }
 }
