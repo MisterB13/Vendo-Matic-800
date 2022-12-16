@@ -4,7 +4,7 @@ import com.techelevator.view.Menu;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class FeedMoney {
+public class FeedMoneyNYI {
     private static final String FEED_MONEY_MONEY_TO_DEPOSIT = "Deposit Money";
 
     private static final String FEED_MONEY_PREVIOUS_MENU = "Return to previous menu";
@@ -16,7 +16,7 @@ public class FeedMoney {
     private double balance;
     private final Menu menu;
 
-    public FeedMoney(Menu menu) {
+    public FeedMoneyNYI(Menu menu) {
         this.menu = menu;
     }
 

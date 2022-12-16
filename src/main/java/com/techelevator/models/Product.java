@@ -11,6 +11,7 @@ public abstract class Product {
         this.price = price;
         this.type = type;
     }
+    public Product(){}
 
     public String getName() {
         return name;

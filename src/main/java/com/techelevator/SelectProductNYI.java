@@ -5,13 +5,13 @@ import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
 import java.util.Scanner;
 
-public class SelectProduct {
+public class SelectProductNYI {
     private final Menu menu;
     private static final String ENTER_PRODUCT_CODE_TO_PURCHASE = "Enter product code to purchase";
     private static final String FEED_MONEY_PREVIOUS_MENU = "Return to previous menu";
     private static final String[] SELECT_PRODUCT_MENU_OPTIONS = { ENTER_PRODUCT_CODE_TO_PURCHASE, FEED_MONEY_PREVIOUS_MENU };
 
-    public SelectProduct(Menu menu) {
+    public SelectProductNYI(Menu menu) {
         this.menu = menu;
     }
 

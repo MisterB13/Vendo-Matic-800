@@ -22,10 +22,10 @@ public class PurchaseCLI {
             var choice = (String) menu.getChoiceFromOptions(PURCHASING_MENU_OPTIONS);
 
             if(choice.equals(PURCHASING_MENU_FEED_MONEY)) {
-                FeedMoney feedMoney = new FeedMoney(menu);
+                FeedMoneyNYI feedMoney = new FeedMoneyNYI(menu);
                 feedMoney.displayFeedMoneyMenu();
             } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
-                SelectProduct selectProduct = new SelectProduct(menu);
+                SelectProductNYI selectProduct = new SelectProductNYI(menu);
                 selectProduct.displaySelectProductMenu();
 
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
