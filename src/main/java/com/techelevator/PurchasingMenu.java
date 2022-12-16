@@ -79,12 +79,13 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         return amountToAddBack;
     }
 
-    public void selectProduct() throws InvalidProductCodeException {
+    public String selectProduct() throws InvalidProductCodeException {
         System.out.println(getProductList());
         System.out.println("Please enter the item code of the product you wish to purchase: ");
         String userIn = in;
         String typeOfTransaction = product.getName();
         String type = product.getType();
+        String selection = "You have selected: " + Repo.getProductFromList(userIn);
         switch (type) {
             case (TYPE_CHIP) :
                 System.out.println("Crunch Crunch, Yum!");
@@ -99,8 +100,8 @@ public class PurchasingMenu extends Menu implements TypeConstants {
                 System.out.println("Chew Chew, Yum!");
                 break;
         }
-        System.out.println("You have selected: " + Repo.getProductFromList(userIn));
         writer.writer(typeOfTransaction, in, balance.getBalance(), changeRemainingBalance(balance.getBalance()));
+        return selection;
     }
 
     public BigDecimal changeRemainingBalance(BigDecimal balance) {
