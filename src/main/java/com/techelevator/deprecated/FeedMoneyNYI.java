@@ -1,21 +1,25 @@
-package com.techelevator;
+package com.techelevator.deprecated;
 
 import com.techelevator.view.Menu;
+
+import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
+//@Deprecated
 public class FeedMoneyNYI {
     private static final String FEED_MONEY_MONEY_TO_DEPOSIT = "Deposit Money";
 
-    private static final String FEED_MONEY_PREVIOUS_MENU = "Return to previous menu";
+    private static final String RETURN_TO_PREVIOUS_MENU = "Return To Previous Menu";
 
-    private static final String[] FEED_MONEY_MENU_OPTIONS = { FEED_MONEY_MONEY_TO_DEPOSIT, FEED_MONEY_PREVIOUS_MENU };
+    private static final String[] FEED_MONEY_MENU_OPTIONS = { FEED_MONEY_MONEY_TO_DEPOSIT, RETURN_TO_PREVIOUS_MENU };
 
-    private static final Integer[] DOLLAR_AMOUNTS = {1, 5, 10, 20};
+    private static final BigDecimal[] DOLLAR_AMOUNTS = { new BigDecimal(1), new BigDecimal(5), new BigDecimal(10), new BigDecimal(20)};
 
-    private double balance;
+    private static BigDecimal balance = BalanceNYI.getBalance();
+
     private final Menu menu;
-
     public FeedMoneyNYI(Menu menu) {
         this.menu = menu;
     }
@@ -26,10 +30,10 @@ public class FeedMoneyNYI {
             var choice = (String) menu.getChoiceFromOptions(FEED_MONEY_MENU_OPTIONS);
 
             if(choice.equals(FEED_MONEY_MONEY_TO_DEPOSIT)) {
-                displayBalance();
+                BalanceNYI.displayBalance();
                 makeTransaction();
 
-            } else if (choice.equals(FEED_MONEY_PREVIOUS_MENU)) {break;}
+            } else if (choice.equals(RETURN_TO_PREVIOUS_MENU)) {break;}
         }
     }
 
@@ -41,12 +45,13 @@ public class FeedMoneyNYI {
                 System.out.print("Insert Dollar Amount >>> ");
                 var scanner = new Scanner(System.in);
 
-                int inputDollarAmount = Integer.parseInt(scanner.nextLine());
-                var correctIncrement = Arrays.stream(DOLLAR_AMOUNTS).anyMatch(n -> n == inputDollarAmount);
+                BigDecimal inputDollarAmount = new BigDecimal(scanner.nextLine());
+                var correctIncrement = Arrays.stream(DOLLAR_AMOUNTS).anyMatch(n -> Objects.equals(n, inputDollarAmount));
 
                 if(correctIncrement) {
-                    balance += inputDollarAmount;
-                    System.out.printf(System.lineSeparator() +"$%d was received, current balance updated to $%.2f" + System.lineSeparator(),inputDollarAmount, balance);
+                    BalanceNYI.addFunds(inputDollarAmount);
+                    balance = BalanceNYI.getBalance();
+                    System.out.printf(System.lineSeparator() +"$%.2f was received, balance updated to $%.2f" + System.lineSeparator(),inputDollarAmount, balance);
                     break;
                 }
                 else {
@@ -58,6 +63,4 @@ public class FeedMoneyNYI {
            System.out.println(System.lineSeparator() + "Input is not a number." + System.lineSeparator());
         }
     }
-
-    private void displayBalance() { System.out.printf(System.lineSeparator() + "Current Money Provided: $%.2f" + System.lineSeparator(), balance); }
 }

@@ -1,8 +1,9 @@
 package com.techelevator;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Balance {
-    private BigDecimal balance = BigDecimal.valueOf(0).setScale(2);
+    private BigDecimal balance = BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_DOWN);
 
     public void add(int money) {
         balance = balance.add(BigDecimal.valueOf(money));

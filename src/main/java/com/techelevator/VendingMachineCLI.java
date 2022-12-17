@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import com.techelevator.data.Repo;
+import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.view.Menu;
 
 public class VendingMachineCLI {
@@ -28,17 +29,6 @@ public class VendingMachineCLI {
 			}
 		}
 	}
-
-//	public static void testInput()  {
-//		try {
-//			var message = Repo.updateProduct("A1");
-//			System.out.println(message);
-//
-//		} catch (InvalidProductCodeException ipce) {
-//			System.out.println(ipce.getMessage());
-//		}
-//
-//	}
 
 	public static void main(String[] args) {
 		Repo.startup();

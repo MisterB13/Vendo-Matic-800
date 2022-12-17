@@ -103,7 +103,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     }
 
     public BigDecimal changeRemainingBalance(BigDecimal balance) {
-        BigDecimal productPrice = BigDecimal.valueOf(product.getPrice());
+        BigDecimal productPrice = product.getPrice();
         BigDecimal newBalance = balance.subtract(productPrice);
         return newBalance;
     }

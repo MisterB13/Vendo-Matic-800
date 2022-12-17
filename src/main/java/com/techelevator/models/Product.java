@@ -1,23 +1,25 @@
 package com.techelevator.models;
 
+import java.math.BigDecimal;
+
 public abstract class Product {
     private String name;
-    private double price;
+    private BigDecimal price;
     private int quantity = 5;
     private String type;
 
-    public Product(String name, double price, String type) {
+    public Product(String name, BigDecimal price, String type) {
         this.name = name;
         this.price = price;
         this.type = type;
     }
-    public Product(){}
+    public Product() {}
 
     public String getName() {
         return name;
     }
 
-    public double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 

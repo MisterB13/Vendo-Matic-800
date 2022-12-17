@@ -1,17 +1,19 @@
-package com.techelevator;
+package com.techelevator.deprecated;
 
 import com.techelevator.view.Menu;
+
+
+//@Deprecated
 public class PurchaseCLI {
 
     private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";
-
     private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product";
-
     private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
+    private static final String RETURN_TO_MAIN_MENU = "Return To Main Menu";
 
-    private static final String[] PURCHASING_MENU_OPTIONS = { PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION };
+    private static final String[] PURCHASING_MENU_OPTIONS = { PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION, RETURN_TO_MAIN_MENU };
 
-    private final Menu menu;
+    private Menu menu;
 
     public PurchaseCLI(Menu menu) {
         this.menu = menu;
@@ -29,8 +31,11 @@ public class PurchaseCLI {
                 selectProduct.displaySelectProductMenu();
 
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
+                FinishTransactionNYI finishTransaction = new FinishTransactionNYI(menu);
+                finishTransaction.displayFinishedTransaction();
+                break;
 
-            }
+            } else if (choice.equals(RETURN_TO_MAIN_MENU)) { break; }
         }
     }
 }

@@ -1,14 +1,18 @@
 package com.techelevator.data;
 
-import com.techelevator.exceptions.InvalidProductCodeException;
+import com.techelevator.exceptions.IllegalProductQuantityException;
+import com.techelevator.exceptions.IllegalProductCodeException;
+import com.techelevator.exceptions.IllegalProductTypeException;
 import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.models.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
+
 
 public class Repo implements TypeConstants {
 
@@ -29,26 +33,26 @@ public class Repo implements TypeConstants {
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         } catch (Exception e) {
-            System.out.println("Unknown exception occurred in startup.");
+            System.out.println(e.getMessage());
         }
     }
 
-    private static void createProduct(String[] product) {
+    private static void createProduct(String[] product) throws IllegalProductTypeException {
         switch (product[3].trim()) {
             case TYPE_CANDY:
-                listOfProducts.put(product[0], new Candy(product[1], Double.parseDouble(product[2])));
+                listOfProducts.put(product[0], new Candy(product[1], new BigDecimal(product[2])));
                 break;
             case TYPE_CHIP:
-                listOfProducts.put(product[0], new Chip(product[1], Double.parseDouble(product[2])));
+                listOfProducts.put(product[0], new Chip(product[1], new BigDecimal(product[2])));
                 break;
             case TYPE_DRINK:
-                listOfProducts.put(product[0], new Drink(product[1], Double.parseDouble(product[2])));
+                listOfProducts.put(product[0], new Drink(product[1], new BigDecimal(product[2])));
                 break;
             case TYPE_GUM:
-                listOfProducts.put(product[0], new Gum(product[1], Double.parseDouble(product[2])));
+                listOfProducts.put(product[0], new Gum(product[1], new BigDecimal(product[2])));
                 break;
             default:
-                System.out.println("Product type does not exist.");
+                throw new IllegalProductTypeException("Product code not found.");
         }
     }
 
@@ -71,47 +75,45 @@ public class Repo implements TypeConstants {
         return product;
     }
 
-    public static String updateProduct(String productCode)  {
+    public static void updateProduct(String productCode)  {
 
-        String message = "";
         try {
             var key = ProductCodeValidation(productCode);
 
             var productToUpdate = listOfProducts.get(key);
             var quantityToUpdate = productToUpdate.getQuantity();
 
-            if (productToUpdate.getQuantity() > 0) {
-                productToUpdate.setQuantity(productToUpdate.getQuantity() - 1);
+            if(quantityToUpdate <= 0)
+                throw new IllegalProductQuantityException("Product is SOLD OUT.");
 
-                message = String.format("%s's quantity updated from %d to %d.",
-                            productToUpdate.getName(), quantityToUpdate, productToUpdate.getQuantity());
-            } else
-                message = String.format("%s is SOLD OUT.", productToUpdate.getName());
+            productToUpdate.setQuantity(productToUpdate.getQuantity() - 1);
+
+            System.out.printf("%s's quantity updated from %d to %d.",
+                      productToUpdate.getName(), quantityToUpdate, productToUpdate.getQuantity());
 
         } catch (Exception e) { System.out.println(e.getMessage()); }
-        return message;
     }
 
     private void totalSalesReport() {
-
+            //NYI
     }
 
     public static void displayListOfProducts() {
         for (Map.Entry<String, Product> product : listOfProducts.entrySet()) {
-            System.out.printf("%S - %-19s  $%.2f  %-6s %s\n",
-                    product.getKey(), product.getValue().getName(), product.getValue().getPrice(), product.getValue().getType(),
+            System.out.printf("%S - %-19s  $%-6.2f %s\n",
+                    product.getKey(), product.getValue().getName(), product.getValue().getPrice(),
                     product.getValue().getQuantity() > 0 ? product.getValue().getQuantity() : "SOLD OUT");
         }
     }
-    private static String ProductCodeValidation(String productCode) throws InvalidProductCodeException {
+    private static String ProductCodeValidation(String productCode) throws IllegalProductCodeException {
         if(productCode == null)
-            throw new InvalidProductCodeException("Product code was null");
+            throw new IllegalProductCodeException("Product code was null");
 
         String key = productCode.toUpperCase().trim();
         var isValidCode = Arrays.asList(PRODUCT_CODES).contains(key);
 
         if (key.length() != 2 || !isValidCode)
-            throw new InvalidProductCodeException("Product Code does not exist.");
+            throw new IllegalProductCodeException("Product Code does not exist.");
         return key;
     }
 

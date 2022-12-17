@@ -17,7 +17,7 @@ public class Log extends Product {
 
     private String filePath = "module-1-capstone/Log.txt";
 
-    public Log(String name, double price, String type) {
+    public Log(String name, BigDecimal price, String type) {
         super(name, price, type);
     }
     public Log(){}
