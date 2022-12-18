@@ -24,8 +24,8 @@ public class VendingMachineCLI {
 				Repo.displayListOfProducts();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
-				PurchaseCLI purchaseCLI = new PurchaseCLI(menu);
-				purchaseCLI.displayPurchasingMenu();
+				PurchasingMenu pm = new PurchasingMenu();
+				pm.run();
 			}
 		}
 	}

@@ -2,6 +2,7 @@ package com.techelevator;
 
 import com.techelevator.data.Log;
 import com.techelevator.data.Repo;
+import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.models.Chip;
 import com.techelevator.models.Product;
@@ -21,10 +22,10 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product:";
 
     private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction:";
+
+    private static final String[] PURCHASING_MENU_OPTIONS = {PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION};
     List<String> productList = new ArrayList<>();
     Log writer = new Log();
-
-    String in = System.in.toString();
 
     Product product = new Product() {
         @Override
@@ -35,22 +36,27 @@ public class PurchasingMenu extends Menu implements TypeConstants {
 
     Balance balance = new Balance();
 
+    Menu menu;
+
     public PurchasingMenu(InputStream input, OutputStream output) {
         super(input, output);
     }
     public PurchasingMenu() {}
 
-    public List<String> getProductList() {
-        return productList;
-    }
+    public void run() {
+        while (true) {
+            String choice = (String) menu.getChoiceFromOptions(PURCHASING_MENU_OPTIONS);
 
-    public void setProductList(List<String> productList) {
-        //this.productList = getListOfProducts();
-    }
+            if (choice.equals(PURCHASING_MENU_FEED_MONEY)) {
 
-    public void printProductList() {
-        System.out.println(productList);
-        System.out.println("Please enter item code from list above: ");
+
+            } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
+                SelectProduct sp = new SelectProduct();
+                sp.showSelectProductMenu();
+            } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
+
+            }
+        }
     }
 
     public BigDecimal feedMoney(String choice, BigDecimal runningBalance) {
@@ -97,8 +103,6 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         dime = ((int) balance1 / 10);
         balance1 = balance1 - (dime* 10);
         nickel = ((int) balance1 / 5);
-
-
 
         System.out.println("Your change is " + quarter + " quarters, " + dime + " dimes and " + nickel + " nickels. ");
     }

@@ -16,11 +16,11 @@ public class SelectProduct  {
     private final static String SELECT_PRODUCT_SELECT_PRODUCT = "Select product";
     private final static String SELECT_PRODUCT_RETURN_TO_PREVIOUS = "Return to previous menu";
     private final static String[] SELECT_PURCHASE_OPTIONS = {SELECT_PRODUCT_SELECT_PRODUCT, SELECT_PRODUCT_RETURN_TO_PREVIOUS};
-    private final Menu menu;
+    private Menu menu;
 
 
-    public SelectProduct(Menu menu) {
-        this.menu = menu;
+    public SelectProduct() {
+
     }
 
     public void showSelectProductMenu() {
