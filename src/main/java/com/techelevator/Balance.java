@@ -9,7 +9,7 @@ public class Balance {
         balance = balance.add(BigDecimal.valueOf(money));
     }
 
-    public BigDecimal subtract(BigDecimal money) {
+    public static BigDecimal subtract(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
             balance = balance.subtract(money);
         } else if (balance.compareTo(money) < 0) {

@@ -38,6 +38,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     public PurchasingMenu(InputStream input, OutputStream output) {
         super(input, output);
     }
+    public PurchasingMenu() {}
 
     public List<String> getProductList() {
         return productList;
@@ -75,31 +76,6 @@ public class PurchasingMenu extends Menu implements TypeConstants {
             writer.writer(typeOfTransaction, new BigDecimal(10.00).setScale(2), runningBalance.add(amountToAddBack));
         }
         return amountToAddBack;
-    }
-
-    public String selectProduct()  {
-        System.out.println(getProductList());
-        System.out.println("Please enter the item code of the product you wish to purchase: ");
-        String userIn = in;
-        String typeOfTransaction = product.getName();
-        String type = product.getType();
-        String selection = "You have selected: " + Repo.getProductFromList(userIn);
-        switch (type) {
-            case (TYPE_CHIP) :
-                System.out.println("Crunch Crunch, Yum!");
-                break;
-            case (TYPE_CANDY) :
-                System.out.println("Munch Munch, Yum!");
-                break;
-            case (TYPE_DRINK) :
-                System.out.println("Glug Glug, Yum!");
-                break;
-            case (TYPE_GUM) :
-                System.out.println("Chew Chew, Yum!");
-                break;
-        }
-        writer.writer(typeOfTransaction, in, balance.getBalance(), changeRemainingBalance(balance.getBalance()));
-        return selection;
     }
 
     public BigDecimal changeRemainingBalance(BigDecimal balance) {
