@@ -23,12 +23,12 @@ public class SelectProduct  {
 
     }
 
-    public void showSelectProductMenu() {
+    public void showSelectProductMenu(Menu menu) {
         while (true) {
             String choice = (String) menu.getChoiceFromOptions(SELECT_PURCHASE_OPTIONS);
 
             if (choice.equals(SELECT_PRODUCT_SELECT_PRODUCT)) {
-                PurchasingMenu pm = new PurchasingMenu();
+                PurchasingMenu pm = new PurchasingMenu(menu);
 
                 Repo.displayListOfProducts();
                 selectProduct();

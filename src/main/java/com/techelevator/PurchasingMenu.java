@@ -36,12 +36,14 @@ public class PurchasingMenu extends Menu implements TypeConstants {
 
     Balance balance = new Balance();
 
-    Menu menu;
+    Menu menu = new Menu();
 
     public PurchasingMenu(InputStream input, OutputStream output) {
         super(input, output);
     }
-    public PurchasingMenu() {}
+    public PurchasingMenu(Menu menu) {
+        this.menu = menu;
+    }
 
     public void run() {
         while (true) {
@@ -52,7 +54,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
 
             } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
                 SelectProduct sp = new SelectProduct();
-                sp.showSelectProductMenu();
+                sp.showSelectProductMenu(menu);
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
 
             }
