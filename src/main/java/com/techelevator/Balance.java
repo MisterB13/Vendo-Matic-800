@@ -19,7 +19,7 @@ public class Balance {
         return money;
     }
 
-    public BigDecimal getBalance() {
+    public static BigDecimal getBalance() {
         return balance;
     }
 

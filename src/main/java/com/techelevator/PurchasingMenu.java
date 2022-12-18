@@ -2,6 +2,8 @@ package com.techelevator;
 
 import com.techelevator.data.Log;
 import com.techelevator.data.Repo;
+import com.techelevator.deprecated.FeedMoneyNYI;
+import com.techelevator.deprecated.FinishTransactionNYI;
 import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.models.Chip;
@@ -17,11 +19,11 @@ import java.util.List;
 
 public class PurchasingMenu extends Menu implements TypeConstants {
 
-    private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money:";
+    private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";
 
-    private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product:";
+    private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product";
 
-    private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction:";
+    private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
 
     private static final String[] PURCHASING_MENU_OPTIONS = {PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION};
     List<String> productList = new ArrayList<>();
@@ -50,13 +52,14 @@ public class PurchasingMenu extends Menu implements TypeConstants {
             String choice = (String) menu.getChoiceFromOptions(PURCHASING_MENU_OPTIONS);
 
             if (choice.equals(PURCHASING_MENU_FEED_MONEY)) {
-
-
+                FeedMoneyNYI fm = new FeedMoneyNYI(menu);
+                fm.displayFeedMoneyMenu();
             } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
                 SelectProduct sp = new SelectProduct();
                 sp.showSelectProductMenu(menu);
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
-
+                FinishTransactionNYI ft = new FinishTransactionNYI(menu);
+                ft.displayFinishedTransaction();
             }
         }
     }
