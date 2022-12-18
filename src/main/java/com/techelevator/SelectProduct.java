@@ -52,7 +52,7 @@ public class SelectProduct  {
 
                     if (result.compareTo(new BigDecimal(0.00)) == 0) {
                         Repo.updateProduct(code);
-                        product.makeSound();
+                        System.out.println(product.makeSound());
                         System.out.println("Your product was dispensed!");
                     } else {
                         System.out.println("Insufficient funds. Please use Feed Money to add to your balance.");
