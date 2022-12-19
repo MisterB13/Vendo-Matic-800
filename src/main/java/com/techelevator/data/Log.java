@@ -46,8 +46,8 @@ public class Log extends Product {
             String printAmount = amount.toString();
             String printBalance = balance.toString();
 
-            logWriter.println(printToday + " " + printTime + " " + String.format("%-25s", typeOfTransaction)
-                    + String.format("%-10s", "$" + printAmount) + String.format("%-10s", "$" + printBalance));
+            logWriter.println(printToday + " " + printTime + " " + typeOfTransaction + " "
+                    + printAmount + " " + printBalance);
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
@@ -65,8 +65,8 @@ public class Log extends Product {
             String printAmount = amount.toString();
             String printBalance = balance.toString();
 
-            logWriter.println(printToday + " " + printTime + " " + String.format("%-25s", typeOfTransaction) + String.format("%-25s", choice)
-                    + String.format("%-10s", "$" + printAmount) + String.format("%-10s", "$" + printBalance));
+            logWriter.println(printToday + " " + printTime + " " + typeOfTransaction + " " + choice.toUpperCase() + " "
+                    + printAmount + " " + printBalance);
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
