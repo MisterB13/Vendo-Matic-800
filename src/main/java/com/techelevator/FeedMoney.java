@@ -34,23 +34,23 @@ public class FeedMoney {
 
             if (choice.equals("1")) {
 
-                Balance.add(1);
+                Balance.addToBalance(new BigDecimal (1));
 
                 writer.writer(FEED_MONEY, new BigDecimal(1.00).setScale(2), Balance.getBalance());
                 System.out.println("$1 is added, balance is now " + Balance.getBalance());
             } else if (choice.equals("2")) {
 
-                Balance.add(5);
+                Balance.addToBalance(new BigDecimal(5));
                 writer.writer(FEED_MONEY, new BigDecimal(2.00).setScale(2), Balance.getBalance());
                 System.out.println("$5 is added, balance is now " + Balance.getBalance());
             } else if (choice.equals("3")) {
 
-                Balance.add(10);
+                Balance.addToBalance(new BigDecimal(10));
                 writer.writer(FEED_MONEY, new BigDecimal(5.00).setScale(2), Balance.getBalance());
                 System.out.println("$10 is added, balance is now " + Balance.getBalance());
             } else if (choice.equals("4")) {
 
-                Balance.add(20);
+                Balance.addToBalance(new BigDecimal(20));
                 writer.writer(FEED_MONEY, new BigDecimal(10.00).setScale(2), Balance.getBalance());
                 System.out.println("$20 is added, balance is now " + Balance.getBalance());
             } else if (choice.equals("0")) {
