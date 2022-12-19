@@ -1,10 +1,12 @@
-package com.techelevator.deprecated;
+package com.techelevator.controllers;
 
+import com.techelevator.deprecated.BalanceNYI;
 import com.techelevator.view.Menu;
+
 import java.math.BigDecimal;
 
-@Deprecated
-public class FinishTransactionNYI {
+//@Deprecated
+public class FinishTransaction {
 
     private static final BigDecimal VALUE_OF_QUARTER = BigDecimal.valueOf(0.25);
     private static final BigDecimal VALUE_OF_DIME = BigDecimal.valueOf(0.10);
@@ -12,7 +14,7 @@ public class FinishTransactionNYI {
 
     private final Menu menu;
 
-    public FinishTransactionNYI(Menu menu) {
+    public FinishTransaction(Menu menu) {
         this.menu = menu;
     }
 
@@ -60,3 +62,4 @@ public class FinishTransactionNYI {
         }
     }
 }
+

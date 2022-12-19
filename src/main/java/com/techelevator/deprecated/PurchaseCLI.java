@@ -1,5 +1,6 @@
 package com.techelevator.deprecated;
 
+import com.techelevator.controllers.FinishTransaction;
 import com.techelevator.view.Menu;
 
 
@@ -31,9 +32,8 @@ public class PurchaseCLI {
                 selectProduct.displaySelectProductMenu();
 
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
-                FinishTransactionNYI finishTransaction = new FinishTransactionNYI(menu);
+                FinishTransaction finishTransaction = new FinishTransaction(menu);
                 finishTransaction.displayFinishedTransaction();
-                break;
 
             } else if (choice.equals(RETURN_TO_MAIN_MENU)) { break; }
         }

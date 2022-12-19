@@ -44,7 +44,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     }
 
     public void setProductList(List<String> productList) {
-        //this.productList = getListOfProducts();
+        //this.productList = Repo.getListOfProducts();
     }
 
     public void printProductList() {
@@ -83,7 +83,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         String userIn = in;
         String typeOfTransaction = product.getName();
         String type = product.getType();
-        String selection = "You have selected: " + Repo.getProductFromList(userIn);
+        String selection = "You have selected: " + Repo.getProductByProductCode(userIn);
         switch (type) {
             case (TYPE_CHIP) :
                 System.out.println("Crunch Crunch, Yum!");

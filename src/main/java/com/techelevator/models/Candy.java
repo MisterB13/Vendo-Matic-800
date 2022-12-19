@@ -1,8 +1,6 @@
 package com.techelevator.models;
 
-
 import com.techelevator.interfaces.TypeConstants;
-
 import java.math.BigDecimal;
 
 public class Candy extends Product implements TypeConstants {

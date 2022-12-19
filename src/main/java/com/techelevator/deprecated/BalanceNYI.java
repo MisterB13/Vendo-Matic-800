@@ -20,9 +20,9 @@ public class BalanceNYI {
         return false;
     }
 
-    public static void giveChange() {
-        System.out.printf(System.lineSeparator() + "Your change is $%.2f, Thank you!" + System.lineSeparator(), BalanceNYI.getBalance());
-    }
+//    public static void giveChange() {
+//        System.out.printf(System.lineSeparator() + "Your change is $%.2f, Thank you!" + System.lineSeparator(), BalanceNYI.getBalance());
+//    }
 
     public static BigDecimal getBalance() { return balance; }
 
