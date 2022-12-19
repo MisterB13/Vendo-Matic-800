@@ -1,10 +1,9 @@
 package com.techelevator.controllers;
 
-import com.techelevator.Balance;
-import com.techelevator.deprecated.BalanceNYI;
+import com.techelevator.data.Log;
+import com.techelevator.data.Repo;
+import com.techelevator.util.Balance;
 import com.techelevator.view.Menu;
-
-import java.math.BigDecimal;
 
 //@Deprecated
 public class FinishTransaction {
@@ -21,7 +20,10 @@ public class FinishTransaction {
 
     public void displayFinishedTransaction() {
         //var balance = BalanceNYI.getBalance();
+        var typeOfTransaction = "GIVE CHANGE:";
+        var balance = Balance.getBalance();
         Balance.calculateChange();
+        Repo.totalSalesReport();
     }
 
 

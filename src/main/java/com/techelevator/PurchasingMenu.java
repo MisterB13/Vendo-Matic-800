@@ -1,11 +1,10 @@
 package com.techelevator;
 
+import com.techelevator.controllers.FeedMoney;
+import com.techelevator.controllers.SelectProduct;
 import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.view.Menu;
 import com.techelevator.controllers.FinishTransaction;
-
-import java.io.InputStream;
-import java.io.OutputStream;
 
 public class PurchasingMenu extends Menu implements TypeConstants {
 
@@ -14,8 +13,8 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product";
 
     private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
-
-    private static final String[] PURCHASING_MENU_OPTIONS = {PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION};
+    private static final String PURCHASING_MENU_END = "Return to Main Menu";
+    private static final String[] PURCHASING_MENU_OPTIONS = {PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION, PURCHASING_MENU_END};
     private final Menu menu;
 
     public PurchasingMenu(Menu menu) {
@@ -35,6 +34,8 @@ public class PurchasingMenu extends Menu implements TypeConstants {
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
                 FinishTransaction ft = new FinishTransaction(menu);
                 ft.displayFinishedTransaction();
+            } else if (choice.equals(PURCHASING_MENU_END)) {
+                break;
             }
         }
     }

@@ -10,15 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Log extends Product {
-    LocalTime localTime;
-    LocalDate localDate;
-
-    private String filePath = "module-1-capstone/Log.txt";
-
-    public Log(String name, BigDecimal price, String type) {
-        super(name, price, type);
-    }
+public class Log {
     public Log(){}
 
 
@@ -26,7 +18,7 @@ public class Log extends Product {
 
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
-        try (PrintWriter logWriter = new PrintWriter(new FileOutputStream(new File("./log.txt"), true))) {
+        try (PrintWriter logWriter = new PrintWriter(new FileOutputStream(("./log.txt"), true))) {
 
             String printToday = currentDate.toString();
             String printTime = currentTime.toString().substring(0, currentTime.toString().length() - 4);
@@ -45,7 +37,7 @@ public class Log extends Product {
 
         LocalDate currentDate = LocalDate.now();
         LocalTime currentTime = LocalTime.now();
-        try (PrintWriter logWriter = new PrintWriter(new FileOutputStream(new File("./log.txt"), true))) {
+        try (PrintWriter logWriter = new PrintWriter(new FileOutputStream(("./log.txt"), true))) {
 
             String printToday = currentDate.toString();
             String printTime = currentTime.toString().substring(0, currentTime.toString().length() - 4);
@@ -58,10 +50,5 @@ public class Log extends Product {
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
         }
-    }
-
-    @Override
-    public String makeSound() {
-        return null;
     }
 }

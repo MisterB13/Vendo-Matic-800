@@ -4,7 +4,7 @@ import com.techelevator.controllers.FinishTransaction;
 import com.techelevator.view.Menu;
 
 
-//@Deprecated
+@Deprecated
 public class PurchaseCLI {
 
     private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";

@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
-//@Deprecated
+@Deprecated
 public class FeedMoneyNYI {
     private static final String FEED_MONEY_MONEY_TO_DEPOSIT = "Deposit Money";
 
