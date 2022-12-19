@@ -8,11 +8,17 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Log {
+    private static final String LOG_GIVE_CHANGE = "GIVE CHANGE";
     public Log(){}
 
+    private String logTimeStamp() {
+        return LocalDateTime.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy hh:mm:ss a"));
+    }
 
     public void writer(String typeOfTransaction, BigDecimal amount, BigDecimal balance) {
 
@@ -51,4 +57,19 @@ public class Log {
             System.err.println("File not found.");
         }
     }
+
+
+
+    public void giveChangeLog(BigDecimal amount, BigDecimal balance) {
+
+        try (PrintWriter logWriter = new PrintWriter(new FileOutputStream(("./log.txt"), true))) {
+
+            logWriter.println(logTimeStamp() + " " + LOG_GIVE_CHANGE  + " $"
+                    + amount + " $" + balance);
+
+        } catch (FileNotFoundException e) {
+            System.err.println("File not found.");
+        }
+    }
+
 }

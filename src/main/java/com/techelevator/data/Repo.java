@@ -158,7 +158,6 @@ public class Repo implements TypeConstants {
 
     }
 
-
     public static void printListOfProducts() {
         for (Map.Entry<String, Product> product : listOfProducts.entrySet()) {
             System.out.printf("%S - %-19s  $%-6.2f %s\n",
@@ -166,7 +165,6 @@ public class Repo implements TypeConstants {
                     product.getValue().getQuantity() > 0 ? product.getValue().getQuantity() : "SOLD OUT");
         }
     }
-//    public void printProductList() {}
 
     private static String ProductCodeValidation(String productCode) throws IllegalProductCodeException {
         if(productCode == null)

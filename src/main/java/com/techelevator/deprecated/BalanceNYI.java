@@ -20,10 +20,6 @@ public class BalanceNYI {
         return false;
     }
 
-//    public static void giveChange() {
-//        System.out.printf(System.lineSeparator() + "Your change is $%.2f, Thank you!" + System.lineSeparator(), BalanceNYI.getBalance());
-//    }
-
     public static BigDecimal getBalance() { return balance; }
 
     public static void displayBalance() { System.out.printf(System.lineSeparator() + "Current Money Provided: $%.2f" + System.lineSeparator(), balance); }
