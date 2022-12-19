@@ -3,6 +3,7 @@ package com.techelevator;
 
 import com.techelevator.data.Log;
 import com.techelevator.data.Repo;
+import com.techelevator.deprecated.BalanceNYI;
 import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
@@ -30,7 +31,6 @@ public class SelectProduct  {
 
             if (choice.equals(SELECT_PRODUCT_SELECT_PRODUCT)) {
                 PurchasingMenu pm = new PurchasingMenu(menu);
-
                 Repo.displayListOfProducts();
                 selectProduct();
             } else if (choice.equals(SELECT_PRODUCT_RETURN_TO_PREVIOUS)) {
@@ -45,7 +45,7 @@ public class SelectProduct  {
             var scanner = new Scanner(System.in);
             String code = scanner.nextLine();
             BigDecimal balance = Balance.getBalance();
-            Product product = Repo.getProductFromList(code.toLowerCase());
+            Product product = Repo.getProductFromList(code);
 
             if (product != null) {
                 if (product.getQuantity() > 0) {
