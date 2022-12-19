@@ -12,6 +12,7 @@ public class Balance {
     public static boolean subtract(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
             balance = balance.subtract(money);
+            return true;
         } else if (balance.compareTo(money) < 0) {
             System.out.println();
             System.out.println("Not Enough Money!");

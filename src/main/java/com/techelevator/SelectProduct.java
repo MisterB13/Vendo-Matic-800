@@ -51,7 +51,7 @@ public class SelectProduct  {
                 if (product.getQuantity() > 0) {
                     var result = Balance.subtract(product.getPrice());
 
-                    if (result.compareTo(new BigDecimal(0.00)) == 0) {
+                    if (result == true) {
                         Repo.updateProduct(code);
                         System.out.println(product.makeSound());
                         System.out.println("Your product was dispensed!");
@@ -63,6 +63,7 @@ public class SelectProduct  {
                     } break;
                 } else {
                     System.out.println("Your product is out of stock. Please try again later.");
+                    break;
                 }
             }
         }
