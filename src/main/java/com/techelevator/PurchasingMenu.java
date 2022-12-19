@@ -64,30 +64,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         }
     }
 
-    public BigDecimal feedMoney(String choice, BigDecimal runningBalance) {
-        BigDecimal amountToAddBack = new BigDecimal(0);
-        String typeOfTransaction = PURCHASING_MENU_FEED_MONEY;
 
-        System.out.println("1: 1 Dollar");
-        System.out.println("2: 5 Dollars");
-        System.out.println("3: 10 Dollars");
-        System.out.println("4: 20 Dollars");
-
-        if (choice.equals("1")) {
-            amountToAddBack = new BigDecimal(1.00);
-            writer.writer(typeOfTransaction, new BigDecimal(1.00).setScale(2), runningBalance.add(amountToAddBack) );
-        } else if (choice.equals("2")) {
-            amountToAddBack = new BigDecimal(2.00);
-            writer.writer(typeOfTransaction, new BigDecimal(2.00).setScale(2), runningBalance.add(amountToAddBack));
-        } else if (choice.equals("3")) {
-            amountToAddBack = new BigDecimal(5.00);
-            writer.writer(typeOfTransaction, new BigDecimal(5.00).setScale(2), runningBalance.add(amountToAddBack));
-        } else if (choice.equals("4")) {
-            amountToAddBack = new BigDecimal(10.00);
-            writer.writer(typeOfTransaction, new BigDecimal(10.00).setScale(2), runningBalance.add(amountToAddBack));
-        }
-        return amountToAddBack;
-    }
 
     public BigDecimal changeRemainingBalance(BigDecimal balance) {
         BigDecimal productPrice = product.getPrice();
