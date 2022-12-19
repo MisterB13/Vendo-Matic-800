@@ -6,7 +6,6 @@ import com.techelevator.controllers.FinishTransaction;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.math.BigDecimal;
 
 public class PurchasingMenu extends Menu implements TypeConstants {
 
@@ -20,10 +19,10 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     private final Menu menu;
 
 
-    public PurchasingMenu(InputStream input, OutputStream output, Menu menu) {
-        super(input, output);
-        this.menu = menu;
-    }
+//    public PurchasingMenu(InputStream input, OutputStream output, Menu menu) {
+//        super(input, output);
+//        this.menu = menu;
+//    }
     public PurchasingMenu(Menu menu) {
         this.menu = menu;
     }

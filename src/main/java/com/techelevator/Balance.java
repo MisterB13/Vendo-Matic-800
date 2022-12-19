@@ -1,72 +1,54 @@
 package com.techelevator;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 public class Balance {
-    private static BigDecimal balance = BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_DOWN);
 
-    public void add(int money) {
-        balance = balance.add(BigDecimal.valueOf(money));
+    private static final BigDecimal VALUE_OF_QUARTER = BigDecimal.valueOf(0.25);
+    private static final BigDecimal VALUE_OF_DIME = BigDecimal.valueOf(0.10);
+    private static final BigDecimal VALUE_OF_NICKLE = BigDecimal.valueOf(0.05);
+
+    private static BigDecimal balance = BigDecimal.ZERO;
+
+    public static void addToBalance(BigDecimal funds) {
+        balance = balance.add(funds);
     }
 
-    public static boolean subtract(BigDecimal money) {
-        if (balance.compareTo(money) >= 0) {
-            balance = balance.subtract(money);
+    public static boolean subtractFromBalance(BigDecimal priceOfProduct) {
+        if(balance.compareTo(priceOfProduct) >= 0) {
+            balance = balance.subtract(priceOfProduct);
             return true;
-        } else if (balance.compareTo(money) < 0) {
-            System.out.println();
-            System.out.println("Not Enough Money!");
         }
         return false;
     }
 
-    public static BigDecimal getBalance() {
-        return balance;
+    public static void calculateChange() {
+        var quarters = 0;
+        var dimes = 0;
+        var nickles = 0;
+
+        try {
+            while(balance.compareTo(BigDecimal.ZERO) > 0) {
+                if(BigDecimal.ZERO.compareTo(balance.remainder(VALUE_OF_QUARTER)) == 0) {
+                    quarters++;
+                    balance = balance.subtract(VALUE_OF_QUARTER);
+                } else if (BigDecimal.ZERO.compareTo(balance.remainder(VALUE_OF_DIME)) == 0) {
+                    dimes++;
+                    balance = balance.subtract(VALUE_OF_DIME);
+                } else if (BigDecimal.ZERO.compareTo(balance.remainder(VALUE_OF_NICKLE)) == 0) {
+                    nickles++;
+                    balance = balance.subtract(VALUE_OF_NICKLE);
+                }
+            }
+            System.out.printf("Balance: %s Quarters: %d Dimes: %d Nickles: %d", balance, quarters, dimes, nickles);
+        } catch (Exception e) {
+            System.out.println("Error in giveCorrectChange");
+        }
     }
 
-    public void remaining_Balance() {
+    public static void displayBalance() { System.out.printf(System.lineSeparator() + "Current Money Provided: $%.2f" + System.lineSeparator(), balance); }
 
-        BigDecimal current_Balance = balance;
-
-        //prints out the customer's balance
-        System.out.println();
-        System.out.println("Returning Total Change Of: $" + balance + "!");
-
-        // these are the counts of coins
-        int quarters_Count = 0;
-        int dimes_Count = 0;
-        int nickels_Count = 0;
-
-        // while the balance is first, more than a quarter, it will add a quarter to count, and subtract from balance
-        while (balance.compareTo(BigDecimal.valueOf(.25)) >= 0) {
-            quarters_Count++;
-            balance = balance.subtract(BigDecimal.valueOf(.25));
-        }
-        // while the balance is second, more than a dime, it will add a dime to count, and subtract from balance
-        while (balance.compareTo(BigDecimal.valueOf(.10)) >= 0) {
-            dimes_Count++;
-            balance = balance.subtract(BigDecimal.valueOf(.10));
-        }
-        // while the balance is third, more than a nickel, it will add a nickel to count, and subtract from balance
-        while (balance.compareTo(BigDecimal.valueOf(.05)) >= 0) {
-            nickels_Count++;
-            balance = balance.subtract(BigDecimal.valueOf(.05));
-        }
-        // at this point, the balance should be at $0.00
-        System.out.println();
-
-        // this prints out the count of quarters, if any
-        if (quarters_Count > 0) {
-            System.out.println(quarters_Count + " Quarter(s)");
-        }
-        // this prints out the count of dimes, if any
-        if (dimes_Count > 0) {
-            System.out.println(dimes_Count + " Dime(s)");
-        }
-        // this prints out the count of nickels, if any
-        if (nickels_Count > 0) {
-            System.out.println(nickels_Count + " Nickel(s)");
-        }
+    public static BigDecimal getBalance() {
+        return balance;
     }
 }
 

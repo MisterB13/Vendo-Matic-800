@@ -3,7 +3,7 @@ package com.techelevator.deprecated;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-//@Deprecated
+@Deprecated
 public class BalanceNYI {
 
     private static BigDecimal balance = BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_DOWN);

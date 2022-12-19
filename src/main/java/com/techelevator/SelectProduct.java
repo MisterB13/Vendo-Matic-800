@@ -49,13 +49,13 @@ public class SelectProduct  {
 
             if (product != null) {
                 if (product.getQuantity() > 0) {
-                    var result = Balance.subtract(product.getPrice());
+                    var result = Balance.subtractFromBalance(product.getPrice());
 
                     if (result == true) {
                         Repo.updateProductQuantity(code);
                         System.out.println(product.makeSound());
                         System.out.println("Your product was dispensed!");
-                        Balance.subtract(productPrice);
+                        Balance.subtractFromBalance(productPrice);
                         System.out.println("Remaining balance: " + Balance.getBalance());
                         log.writer(product.getType(), code, product.getPrice(), Balance.getBalance());
                     } else {
