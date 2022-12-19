@@ -16,7 +16,7 @@ public class Balance {
             System.out.println();
             System.out.println("Not Enough Money!");
         }
-        return money;
+        return balance;
     }
 
     public static BigDecimal getBalance() {
