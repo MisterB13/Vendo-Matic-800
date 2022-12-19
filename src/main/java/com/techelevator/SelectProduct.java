@@ -30,7 +30,6 @@ public class SelectProduct  {
 
             if (choice.equals(SELECT_PRODUCT_SELECT_PRODUCT)) {
                 PurchasingMenu pm = new PurchasingMenu(menu);
-
                 Repo.displayListOfProducts();
                 selectProduct();
             } else if (choice.equals(SELECT_PRODUCT_RETURN_TO_PREVIOUS)) {
