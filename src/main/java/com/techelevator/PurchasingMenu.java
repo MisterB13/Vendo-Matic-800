@@ -9,6 +9,7 @@ import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.models.Chip;
 import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
+import com.techelevator.view.SelectProduct;
 
 import java.io.Console;
 import java.io.InputStream;
@@ -55,7 +56,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
                 FeedMoneyNYI fm = new FeedMoneyNYI(menu);
                 fm.displayFeedMoneyMenu();
             } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
-                SelectProduct sp = new SelectProduct();
+                SelectProduct sp = new com.techelevator.SelectProduct();
                 sp.showSelectProductMenu(menu);
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
                 FinishTransactionNYI ft = new FinishTransactionNYI(menu);
@@ -63,17 +64,6 @@ public class PurchasingMenu extends Menu implements TypeConstants {
             }
         }
     }
-
-
-
-    public BigDecimal changeRemainingBalance(BigDecimal balance) {
-        BigDecimal productPrice = product.getPrice();
-        BigDecimal newBalance = balance.subtract(productPrice);
-        return newBalance;
-    }
-
-
-
     public void finishTransaction(BigDecimal balance) {
         double balance1;
         int quarter;
