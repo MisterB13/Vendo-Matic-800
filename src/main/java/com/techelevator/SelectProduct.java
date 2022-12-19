@@ -30,7 +30,7 @@ public class SelectProduct  {
 
             if (choice.equals(SELECT_PRODUCT_SELECT_PRODUCT)) {
                 PurchasingMenu pm = new PurchasingMenu(menu);
-                Repo.displayListOfProducts();
+                Repo.printListOfProducts();
                 selectProduct();
             } else if (choice.equals(SELECT_PRODUCT_RETURN_TO_PREVIOUS)) {
                 break;
@@ -43,7 +43,7 @@ public class SelectProduct  {
             System.out.println("Please select an item using a code from the list above: ");
             var scanner = new Scanner(System.in);
             String code = scanner.nextLine();
-            Product product = Repo.getProductFromList(code.toLowerCase());
+            Product product = Repo.getProductByProductCode(code.toLowerCase());
             BigDecimal productPrice = product.getPrice();
 
 
@@ -51,8 +51,8 @@ public class SelectProduct  {
                 if (product.getQuantity() > 0) {
                     var result = Balance.subtract(product.getPrice());
 
-                    if (result.compareTo(new BigDecimal(0.00)) == 0) {
-                        Repo.updateProduct(code);
+                    if (result == true) {
+                        Repo.updateProductQuantity(code);
                         System.out.println(product.makeSound());
                         System.out.println("Your product was dispensed!");
                         Balance.subtract(productPrice);
@@ -63,6 +63,7 @@ public class SelectProduct  {
                     } break;
                 } else {
                     System.out.println("Your product is out of stock. Please try again later.");
+                    break;
                 }
             }
         }

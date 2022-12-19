@@ -1,19 +1,12 @@
 package com.techelevator;
 
-import com.techelevator.data.Log;
-import com.techelevator.data.Repo;
-import com.techelevator.deprecated.FeedMoneyNYI;
-import com.techelevator.deprecated.FinishTransactionNYI;
 import com.techelevator.interfaces.TypeConstants;
-import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
 import com.techelevator.controllers.FinishTransaction;
 
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PurchasingMenu extends Menu implements TypeConstants {
 
@@ -24,13 +17,12 @@ public class PurchasingMenu extends Menu implements TypeConstants {
     private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
 
     private static final String[] PURCHASING_MENU_OPTIONS = {PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION};
-    List<String> productList = new ArrayList<>();
-    Log writer = new Log();
+    private final Menu menu;
 
 
-
-    public PurchasingMenu(InputStream input, OutputStream output) {
+    public PurchasingMenu(InputStream input, OutputStream output, Menu menu) {
         super(input, output);
+        this.menu = menu;
     }
     public PurchasingMenu(Menu menu) {
         this.menu = menu;
@@ -53,10 +45,10 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         }
     }
 
-    public BigDecimal changeRemainingBalance(BigDecimal balance) {
-        BigDecimal productPrice = product.getPrice();
-        BigDecimal newBalance = balance.subtract(productPrice);
-        return newBalance;
-    }
+//    public BigDecimal changeRemainingBalance(BigDecimal balance) {
+//        BigDecimal productPrice = product.getPrice();
+//        BigDecimal newBalance = balance.subtract(productPrice);
+//        return newBalance;
+//    }
 
 }
