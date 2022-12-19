@@ -3,14 +3,8 @@ package com.techelevator;
 
 import com.techelevator.data.Log;
 import com.techelevator.data.Repo;
-import com.techelevator.deprecated.BalanceNYI;
-import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
-
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.Scanner;
 

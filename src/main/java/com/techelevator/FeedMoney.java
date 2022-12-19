@@ -3,7 +3,6 @@ package com.techelevator;
 import com.techelevator.data.Log;
 import com.techelevator.data.Repo;
 import com.techelevator.view.Menu;
-
 import java.math.BigDecimal;
 import java.util.Scanner;
 
@@ -33,26 +32,25 @@ public class FeedMoney {
 
 
             if (choice.equals("1")) {
-
                 Balance.addToBalance(new BigDecimal (1));
 
                 writer.writer(FEED_MONEY, new BigDecimal(1.00).setScale(2), Balance.getBalance());
-                System.out.println("$1 is added, balance is now " + Balance.getBalance());
+                System.out.println("$1 is added, balance is now $" + Balance.getBalance());
             } else if (choice.equals("2")) {
-
                 Balance.addToBalance(new BigDecimal(5));
+
                 writer.writer(FEED_MONEY, new BigDecimal(2.00).setScale(2), Balance.getBalance());
-                System.out.println("$5 is added, balance is now " + Balance.getBalance());
+                System.out.println("$5 is added, balance is now $" + Balance.getBalance());
             } else if (choice.equals("3")) {
-
                 Balance.addToBalance(new BigDecimal(10));
-                writer.writer(FEED_MONEY, new BigDecimal(5.00).setScale(2), Balance.getBalance());
-                System.out.println("$10 is added, balance is now " + Balance.getBalance());
-            } else if (choice.equals("4")) {
 
+                writer.writer(FEED_MONEY, new BigDecimal(5.00).setScale(2), Balance.getBalance());
+                System.out.println("$10 is added, balance is now $" + Balance.getBalance());
+            } else if (choice.equals("4")) {
                 Balance.addToBalance(new BigDecimal(20));
+
                 writer.writer(FEED_MONEY, new BigDecimal(10.00).setScale(2), Balance.getBalance());
-                System.out.println("$20 is added, balance is now " + Balance.getBalance());
+                System.out.println("$20 is added, balance is now $" + Balance.getBalance());
             } else if (choice.equals("0")) {
                 System.out.println("Your Balance is " + Balance.getBalance());
                 break;

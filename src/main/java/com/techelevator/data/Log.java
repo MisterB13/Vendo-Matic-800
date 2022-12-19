@@ -13,7 +13,6 @@ import java.time.LocalTime;
 public class Log extends Product {
     LocalTime localTime;
     LocalDate localDate;
-//    String logLine = localDate.getMonth() + "/" + localDate.getDayOfMonth() + "/" + localDate.getYear() + " " + localTime.getHour() + ":" + localTime.getMinute() + ":" + localTime.getSecond() + " ";
 
     private String filePath = "module-1-capstone/Log.txt";
 
@@ -22,18 +21,6 @@ public class Log extends Product {
     }
     public Log(){}
 
-
-
-//    public void changeLog(String logLine) {
-//        File log = new File(filePath);
-//        try (PrintWriter addLog = new PrintWriter(new FileOutputStream(log, true))){
-//
-//        } catch (FileNotFoundException fnaf) {
-//            System.err.println("File doesn't exist, but really, does anything?");
-//        } catch (Exception e) {
-//            System.err.println("There was an unknown error with the log. You might want to look into that.");
-//        }
-//    }
 
     public void writer(String typeOfTransaction, BigDecimal amount, BigDecimal balance) {
 
@@ -46,8 +33,8 @@ public class Log extends Product {
             String printAmount = amount.toString();
             String printBalance = balance.toString();
 
-            logWriter.println(printToday + " " + printTime + " " + typeOfTransaction + " "
-                    + printAmount + " " + printBalance);
+            logWriter.println(printToday + " " + printTime + " " + typeOfTransaction + " $"
+                    + printAmount + " $" + printBalance);
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
@@ -65,8 +52,8 @@ public class Log extends Product {
             String printAmount = amount.toString();
             String printBalance = balance.toString();
 
-            logWriter.println(printToday + " " + printTime + " " + typeOfTransaction + " " + choice.toUpperCase() + " "
-                    + printAmount + " " + printBalance);
+            logWriter.println(printToday + " " + printTime + " " + typeOfTransaction + " " + choice.toUpperCase() + " $"
+                    + printAmount + " $" + printBalance);
 
         } catch (FileNotFoundException e) {
             System.err.println("File not found.");
