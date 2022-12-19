@@ -5,7 +5,7 @@ import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
 import java.util.Scanner;
 
-//@Deprecated
+@Deprecated
 public class SelectProductNYI {
 
     private static final String ENTER_PRODUCT_CODE_TO_PURCHASE = "Enter product code to purchase";

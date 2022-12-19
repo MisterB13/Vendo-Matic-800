@@ -14,16 +14,14 @@ public class VendingMachineCLI {
 
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
-<<<<<<< HEAD
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
+
+	//private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE };
 	private final static String FILE_PATH = "vendingmachine.csv";
 
 	private static Map<String, Product> products;
-=======
 
 	private static final String MAIN_MENU_END = "End Program";
 	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_END };
->>>>>>> 7aa632079ce0e7667d27ca72374d41d6a3b5581b
 
 	private Menu menu;
 
@@ -36,19 +34,16 @@ public class VendingMachineCLI {
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
-<<<<<<< HEAD
 				Repo.printListOfProducts();
 
 			} else if (choice.equals(MAIN_MENU_OPTION_PURCHASE)) {
 				PurchaseCLI purchaseCLI = new PurchaseCLI(menu);
 				purchaseCLI.displayPurchasingMenu();
-=======
-				Repo.displayListOfProducts();
+				Repo.printListOfProducts();
 				PurchasingMenu pm = new PurchasingMenu(menu);
 				pm.run();
 			} if (choice.equals(MAIN_MENU_END)) {
 				break;
->>>>>>> 7aa632079ce0e7667d27ca72374d41d6a3b5581b
 			}
 		}
 	}
