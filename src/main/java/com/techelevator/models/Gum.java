@@ -1,7 +1,6 @@
 package com.techelevator.models;
 
 import com.techelevator.interfaces.TypeConstants;
-
 import java.math.BigDecimal;
 
 public class Gum extends Product implements TypeConstants {

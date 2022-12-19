@@ -19,7 +19,7 @@ public class SelectProductNYI {
 
     public void displaySelectProductMenu() {
         while(true) {
-            Repo.displayListOfProducts();
+            Repo.printListOfProducts();
             BalanceNYI.displayBalance();
 
             var choice = (String) menu.getChoiceFromOptions(SELECT_PRODUCT_MENU_OPTIONS);
@@ -37,7 +37,7 @@ public class SelectProductNYI {
             var scanner = new Scanner(System.in);
             String productCode = scanner.nextLine().trim();
 
-            Product product = Repo.getProductFromList(productCode);
+            Product product = Repo.getProductByProductCode(productCode);
 
             if(product != null) {
 
@@ -45,7 +45,7 @@ public class SelectProductNYI {
                     var result= BalanceNYI.subtractFunds(product.getPrice());
 
                     if(result) {
-                        Repo.updateProduct(productCode);
+                        Repo.updateProductQuantity(productCode);
                         System.out.println("Purchase was successful");
                     }
                     else { System.out.println("Insufficient funds."); }

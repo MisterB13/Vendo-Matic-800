@@ -30,7 +30,7 @@ public class SelectProduct  {
 
             if (choice.equals(SELECT_PRODUCT_SELECT_PRODUCT)) {
                 PurchasingMenu pm = new PurchasingMenu(menu);
-                Repo.displayListOfProducts();
+                Repo.printListOfProducts();
                 selectProduct();
             } else if (choice.equals(SELECT_PRODUCT_RETURN_TO_PREVIOUS)) {
                 break;
@@ -43,19 +43,19 @@ public class SelectProduct  {
             System.out.println("Please select an item using a code from the list above: ");
             var scanner = new Scanner(System.in);
             String code = scanner.nextLine();
-            Product product = Repo.getProductFromList(code.toLowerCase());
+            Product product = Repo.getProductByProductCode(code.toLowerCase());
             BigDecimal productPrice = product.getPrice();
 
 
             if (product != null) {
                 if (product.getQuantity() > 0) {
-                    var result = Balance.subtract(product.getPrice());
+                    var result = Balance.subtractFromBalance(product.getPrice());
 
                     if (result == true) {
-                        Repo.updateProduct(code);
+                        Repo.updateProductQuantity(code);
                         System.out.println(product.makeSound());
                         System.out.println("Your product was dispensed!");
-                        Balance.subtract(productPrice);
+                        Balance.subtractFromBalance(productPrice);
                         System.out.println("Remaining balance: " + Balance.getBalance());
                         log.writer(product.getType(), code, product.getPrice(), Balance.getBalance());
                     } else {
