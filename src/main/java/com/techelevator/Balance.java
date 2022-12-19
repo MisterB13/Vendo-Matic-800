@@ -3,13 +3,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class Balance {
-    private BigDecimal balance = BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_DOWN);
+    private static BigDecimal balance = BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_DOWN);
 
     public void add(int money) {
         balance = balance.add(BigDecimal.valueOf(money));
     }
 
-    public BigDecimal subtract(BigDecimal money) {
+    public static BigDecimal subtract(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
             balance = balance.subtract(money);
         } else if (balance.compareTo(money) < 0) {
@@ -19,7 +19,7 @@ public class Balance {
         return money;
     }
 
-    public BigDecimal getBalance() {
+    public static BigDecimal getBalance() {
         return balance;
     }
 

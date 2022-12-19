@@ -2,6 +2,9 @@ package com.techelevator;
 
 import com.techelevator.data.Log;
 import com.techelevator.data.Repo;
+import com.techelevator.deprecated.FeedMoneyNYI;
+import com.techelevator.deprecated.FinishTransactionNYI;
+import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.interfaces.TypeConstants;
 import com.techelevator.models.Chip;
 import com.techelevator.models.Product;
@@ -16,15 +19,15 @@ import java.util.List;
 
 public class PurchasingMenu extends Menu implements TypeConstants {
 
-    private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money:";
+    private static final String PURCHASING_MENU_FEED_MONEY = "Feed Money";
 
-    private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product:";
+    private static final String PURCHASING_MENU_SELECT_PRODUCT = "Select Product";
 
-    private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction:";
+    private static final String PURCHASING_MENU_FINISH_TRANSACTION = "Finish Transaction";
+
+    private static final String[] PURCHASING_MENU_OPTIONS = {PURCHASING_MENU_FEED_MONEY, PURCHASING_MENU_SELECT_PRODUCT, PURCHASING_MENU_FINISH_TRANSACTION};
     List<String> productList = new ArrayList<>();
     Log writer = new Log();
-
-    String in = System.in.toString();
 
     Product product = new Product() {
         @Override
@@ -35,48 +38,39 @@ public class PurchasingMenu extends Menu implements TypeConstants {
 
     Balance balance = new Balance();
 
+    Menu menu = new Menu();
+
     public PurchasingMenu(InputStream input, OutputStream output) {
         super(input, output);
     }
-
-    public List<String> getProductList() {
-        return productList;
+    public PurchasingMenu(Menu menu) {
+        this.menu = menu;
     }
 
+<<<<<<< HEAD
     public void setProductList(List<String> productList) {
         //this.productList = Repo.getListOfProducts();
     }
+=======
+    public void run() {
+        while (true) {
+            String choice = (String) menu.getChoiceFromOptions(PURCHASING_MENU_OPTIONS);
+>>>>>>> 7aa632079ce0e7667d27ca72374d41d6a3b5581b
 
-    public void printProductList() {
-        System.out.println(productList);
-        System.out.println("Please enter item code from list above: ");
-    }
-
-    public BigDecimal feedMoney(String choice, BigDecimal runningBalance) {
-        BigDecimal amountToAddBack = new BigDecimal(0);
-        String typeOfTransaction = PURCHASING_MENU_FEED_MONEY;
-
-        System.out.println("1: 1 Dollar");
-        System.out.println("2: 5 Dollars");
-        System.out.println("3: 10 Dollars");
-        System.out.println("4: 20 Dollars");
-
-        if (choice.equals("1")) {
-            amountToAddBack = new BigDecimal(1.00);
-            writer.writer(typeOfTransaction, new BigDecimal(1.00).setScale(2), runningBalance.add(amountToAddBack) );
-        } else if (choice.equals("2")) {
-            amountToAddBack = new BigDecimal(2.00);
-            writer.writer(typeOfTransaction, new BigDecimal(2.00).setScale(2), runningBalance.add(amountToAddBack));
-        } else if (choice.equals("3")) {
-            amountToAddBack = new BigDecimal(5.00);
-            writer.writer(typeOfTransaction, new BigDecimal(5.00).setScale(2), runningBalance.add(amountToAddBack));
-        } else if (choice.equals("4")) {
-            amountToAddBack = new BigDecimal(10.00);
-            writer.writer(typeOfTransaction, new BigDecimal(10.00).setScale(2), runningBalance.add(amountToAddBack));
+            if (choice.equals(PURCHASING_MENU_FEED_MONEY)) {
+                FeedMoneyNYI fm = new FeedMoneyNYI(menu);
+                fm.displayFeedMoneyMenu();
+            } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
+                SelectProduct sp = new SelectProduct();
+                sp.showSelectProductMenu(menu);
+            } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
+                FinishTransactionNYI ft = new FinishTransactionNYI(menu);
+                ft.displayFinishedTransaction();
+            }
         }
-        return amountToAddBack;
     }
 
+<<<<<<< HEAD
     public String selectProduct()  {
         System.out.println(getProductList());
         System.out.println("Please enter the item code of the product you wish to purchase: ");
@@ -101,6 +95,9 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         writer.writer(typeOfTransaction, in, balance.getBalance(), changeRemainingBalance(balance.getBalance()));
         return selection;
     }
+=======
+
+>>>>>>> 7aa632079ce0e7667d27ca72374d41d6a3b5581b
 
     public BigDecimal changeRemainingBalance(BigDecimal balance) {
         BigDecimal productPrice = product.getPrice();
@@ -121,8 +118,6 @@ public class PurchasingMenu extends Menu implements TypeConstants {
         dime = ((int) balance1 / 10);
         balance1 = balance1 - (dime* 10);
         nickel = ((int) balance1 / 5);
-
-
 
         System.out.println("Your change is " + quarter + " quarters, " + dime + " dimes and " + nickel + " nickels. ");
     }
