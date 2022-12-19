@@ -48,8 +48,8 @@ public class PurchasingMenu extends Menu implements TypeConstants {
             String choice = (String) menu.getChoiceFromOptions(PURCHASING_MENU_OPTIONS);
 
             if (choice.equals(PURCHASING_MENU_FEED_MONEY)) {
-                FeedMoneyNYI fm = new FeedMoneyNYI(menu);
-                fm.displayFeedMoneyMenu();
+                FeedMoney fm = new FeedMoney();
+                fm.feedMoney();
             } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
                 SelectProduct sp = new SelectProduct();
                 sp.showSelectProductMenu(menu);
