@@ -9,14 +9,14 @@ public class Balance {
         balance = balance.add(BigDecimal.valueOf(money));
     }
 
-    public static BigDecimal subtract(BigDecimal money) {
+    public static boolean subtract(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
             balance = balance.subtract(money);
         } else if (balance.compareTo(money) < 0) {
             System.out.println();
             System.out.println("Not Enough Money!");
         }
-        return balance;
+        return false;
     }
 
     public static BigDecimal getBalance() {

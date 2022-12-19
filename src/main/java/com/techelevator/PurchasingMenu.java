@@ -1,17 +1,12 @@
 package com.techelevator;
 
 import com.techelevator.data.Log;
-import com.techelevator.data.Repo;
 import com.techelevator.deprecated.FeedMoneyNYI;
 import com.techelevator.deprecated.FinishTransactionNYI;
-import com.techelevator.deprecated.PurchaseCLI;
 import com.techelevator.interfaces.TypeConstants;
-import com.techelevator.models.Chip;
 import com.techelevator.models.Product;
 import com.techelevator.view.Menu;
-import com.techelevator.view.SelectProduct;
 
-import java.io.Console;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.math.BigDecimal;
@@ -56,7 +51,7 @@ public class PurchasingMenu extends Menu implements TypeConstants {
                 FeedMoneyNYI fm = new FeedMoneyNYI(menu);
                 fm.displayFeedMoneyMenu();
             } else if (choice.equals(PURCHASING_MENU_SELECT_PRODUCT)) {
-                SelectProduct sp = new com.techelevator.SelectProduct();
+                SelectProduct sp = new SelectProduct();
                 sp.showSelectProductMenu(menu);
             } else if (choice.equals(PURCHASING_MENU_FINISH_TRANSACTION)) {
                 FinishTransactionNYI ft = new FinishTransactionNYI(menu);
