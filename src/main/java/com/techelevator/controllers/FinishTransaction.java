@@ -46,7 +46,7 @@ public class FinishTransaction {
             }
             Log log = new Log();
             log.giveChangeLog(startingBalance, Balance.getBalance());
-            System.out.printf("Balance: %s Quarters: %d Dimes: %d Nickles: %d", Balance.getBalance(), quarters, dimes, nickles);
+            System.out.printf("Balance: %s Change in Quarters: %d Dimes: %d Nickles: %d", Balance.getBalance(), quarters, dimes, nickles);
         } catch (Exception e) {
             System.out.println("Error in giveCorrectChange");
         }

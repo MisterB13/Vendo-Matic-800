@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 public class Repo implements TypeConstants {
     private static Map<String, Product> listOfProducts = new TreeMap<>();
+    private static final int MAX_PRODUCT_QUANTITY = 5;
 
     /**
      * @param filePath (String) Relative or Absolute string representation of the input file's storage
@@ -26,7 +27,6 @@ public class Repo implements TypeConstants {
      */
 
     public static boolean startup(String filePath) {
-        //String message;
         boolean isComplete = false;
 
         try (var fileReader = new Scanner(new File(filePath))) {
@@ -37,17 +37,14 @@ public class Repo implements TypeConstants {
                 listOfProducts.put(productInfo[0], productToAdd);
 
             }
-            //message = "Startup complete.";
             isComplete = true;
+
         } catch (FileNotFoundException fnfe) {
             System.out.println("File not found.");
-            //message = "File not found.";
         } catch (IllegalProductTypeException ipte) {
             System.out.println(ipte.getMessage());
         } catch (Exception e) {
-            //message = e.getMessage();
         }
-        //return message;
         return isComplete;
     }
 
@@ -90,7 +87,7 @@ public class Repo implements TypeConstants {
 
         } catch (IllegalProductCodeException ipce) {
             System.out.println(ipce.getMessage());
-        } catch (Exception e) {/* System.out.println(e.getMessage()); */}
+        } catch (Exception e) { }
         return product;
     }
 
@@ -101,8 +98,7 @@ public class Repo implements TypeConstants {
             was successfully updated.
      */
 
-    public static boolean updateProductQuantity(String productCode)  {
-        //String message;
+    public static boolean updateProductQuantity(String productCode)  {;
         boolean isSuccessful = false;
 
         try {
@@ -117,13 +113,10 @@ public class Repo implements TypeConstants {
             productToUpdate.setQuantity(productToUpdate.getQuantity() - 1);
 
             isSuccessful = true;
-//            message = String.format("%s's quantity updated from %d to %d.",
-//                      productToUpdate.getName(), quantityToUpdate, productToUpdate.getQuantity());
 
         }catch (IllegalProductCodeException ipce) {
             System.out.println(ipce.getMessage());
-        } catch (Exception e) {/* message = e.getMessage(); */}
-        //return message;
+        } catch (Exception e) { }
         return isSuccessful;
     }
 
@@ -141,10 +134,10 @@ public class Repo implements TypeConstants {
 
             while(iterator.hasNext()) {
                 var product = iterator.next();
-                printWriter.write(String.format("%s|%d\n", product.getName(), 5 - product.getQuantity()));
+                printWriter.write(String.format("%s|%d\n", product.getName(), MAX_PRODUCT_QUANTITY  - product.getQuantity()));
             }
 
-            var productSales = products.stream().filter(p -> p.getQuantity() < 5).collect(Collectors.toList());
+            var productSales = products.stream().filter(p -> p.getQuantity() < MAX_PRODUCT_QUANTITY).collect(Collectors.toList());
 
             var totalSales = productSales.stream().map(p ->
                 new BigDecimal((5 - p.getQuantity())).multiply(p.getPrice()))
@@ -153,7 +146,7 @@ public class Repo implements TypeConstants {
             printWriter.write(System.lineSeparator() + "**TOTAL SALES** $" + totalSales + System.lineSeparator());
 
         } catch (FileNotFoundException fnfe) {
-            System.out.println(fnfe.getMessage());
+            System.out.println("File not found.");
         }
 
     }
