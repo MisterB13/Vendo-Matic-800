@@ -1,6 +1,6 @@
 ## My Contributions
-Classes : Repo.java and FinishTransaction.java.
-Files (everything in these files) : exceptions, interfaces, models, util, enums and deprecated.
+   Classes : Repo.java and FinishTransaction.java.
+   Files (everything in these files) : exceptions, interfaces, models, util, enums and deprecated.
 
 - Implemented CRUD operations that provided functionality to the application from the persistence data source.
 - Provided user input validation, custom exception handling, and project file structure.
