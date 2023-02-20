@@ -1,3 +1,11 @@
+## Contributions
+Classes : Repo.java and FinishTransaction.java
+Files (everything in these files) : exceptions, interfaces, models, util, enums and deprecated.
+
+- Implemented CRUD operations that provided functionality to the application from the persistence data source.
+- Provided user input validation, custom exception handling, and project file structure.
+- Created data models using object-oriented programming principles such as inheritance, encapsulation, and polymorphism.
+
 
 ## Module 1 Capstone - Vending Machine Software
 
